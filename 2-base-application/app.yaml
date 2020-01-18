@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grpc-server
+  labels:
+    k8s-app: grpc-server
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k8s-app: grpc-server
+    spec:
+      containers:
+      - name: grpc-server
+        image: registry.cn-hangzhou.aliyuncs.com/acs-sample/grpc-server:latest
+        ports:
+        - containerPort: 50051
+          protocol: TCP
