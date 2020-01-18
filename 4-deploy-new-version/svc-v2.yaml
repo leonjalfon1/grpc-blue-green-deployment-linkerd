@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-server-v2
+  namespace: default
+spec:
+  selector:
+    app: grpc-server
+    version: v2
+  ports:
+  - port: 50051
+    targetPort: 50051
+    name: grpc

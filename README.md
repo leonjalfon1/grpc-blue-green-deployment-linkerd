@@ -99,13 +99,13 @@ https://grpc.seladevops.com
 
  - Create a self signed certificate by run (grpc.seladevops.com in my case):
 ```
-mkdir ./cert
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=grpc.seladevops.com/O=grpc.seladevops.com"
+mkdir ./2-base-application/cert
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./2-base-application/cert/tls.key -out ./2-base-application/cert/tls.crt -subj "/CN=grpc.seladevops.com/O=grpc.seladevops.com"
 ```
 
  - Create a kubernetes secret to store the certificate:
 ```
-kubectl create secret tls grpc-certificate --key ./cert/tls.key --cert ./cert/tls.crt
+kubectl create secret tls grpc-certificate --key ./2-base-application/cert/tls.key --cert ./2-base-application/cert/tls.crt
 ```
  
 ---
@@ -165,5 +165,49 @@ grpcurl -insecure -d '{"name": "World!!"}' grpc.seladevops.com:443 helloworld.Gr
 
  - Create a base service to be used by the traffic split to route the traffic:
 ```
-
 ```
+
+---
+
+## 9) Deploy new version
+
+ - xx
+```
+```
+
+---
+
+## 10) Access the application by ingress
+
+ - Create a self signed certificate by run (grpc.seladevops.com in my case):
+```
+mkdir ./5-expose-by-ingress/cert
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./5-expose-by-ingress/cert/tls.key -out ./5-expose-by-ingress/cert/tls.crt -subj "/CN=grpc-test.seladevops.com/O=grpc-test.seladevops.com"
+```
+
+ - Create a kubernetes secret to store the certificate:
+```
+kubectl create secret tls grpc-test-certificate --key ./5-expose-by-ingress/cert/tls.key --cert ./5-expose-by-ingress/cert/tls.crt
+```
+
+ - Use an existent hosted zone (seladevops.com in my case) to create a record set with the following details:
+```
+Name: grpc-test.seladevops.com
+Type: A - IPv4 address
+Alias: Yes
+Alias Target: <ingress load balancer dns>
+Routing policy: simple
+Evaluate target health: no
+```
+
+ - Test the configuration by browse to (you should receive error 404 from nginx):
+```
+https://grpc-test.seladevops.com
+```
+
+---
+
+## 11) Switch traffic to the new application
+
+
+

@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grpc-server-v2
+  labels:
+    app: grpc-server
+    version: v2
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grpc-server
+        version: v2
+    spec:
+      containers:
+      - name: grpc-server
+        image: leonjalfon1/grpc-demo:v2
+        ports:
+        - containerPort: 50051
+          protocol: TCP
