@@ -162,3 +162,8 @@ grpcurl -insecure -d '{"name": "World!!"}' grpc.seladevops.com:443 helloworld.Gr
 ---
 
 ## 8) Configure traffic split to access the application
+
+ - Create a base service to be used by the traffic split to route the traffic:
+```
+
+```
