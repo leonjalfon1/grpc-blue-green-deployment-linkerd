@@ -1,6 +1,19 @@
 # Blue/Green Deployment for GRPC App with Linkerd
 ---
 
+
+- In this demo we will see how to implement blue/green deployment for a gRPC application.
+ - Linkerd (service mesh) is installed in the cluster and is used to manage the microservices.
+ - In general what we will do is the following:
+ 
+    1) Deploy the "v1" application to create the "production" environment (green)
+    2) Use "split traffic" to manage the routing to the application and provide
+    3) Deploy the "v2" application to create the new application version (blue)
+    4) Allow access to the blue version by using a different url
+    5) After perform the tests, route the traffic to "v2" instead of to "v1"
+
+
+
 ## Prerequisites
 
  - kubectl

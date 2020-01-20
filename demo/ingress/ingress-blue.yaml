@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+  name: grpc-server-blue
+  namespace: default
+spec:
+  rules:
+  - host: grpc.blue.seladevops.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grpc-server-blue
+          servicePort: 50051
+  tls:
+  - secretName: blue-cert
+    hosts:
+      - grpc.blue.seladevops.com
