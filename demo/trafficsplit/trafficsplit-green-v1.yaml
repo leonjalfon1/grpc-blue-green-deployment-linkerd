@@ -8,3 +8,5 @@ spec:
   backends:
   - service: grpc-server-v1
     weight: 100
+  - service: grpc-server-v2
+    weight: 0

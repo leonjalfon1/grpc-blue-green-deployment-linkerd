@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: grpc-server
+  name: grpc-server-v1
   labels:
     app: grpc-server
   namespace: default
