@@ -1,11 +1,11 @@
 # Blue/Green Deployment for gRPC Application with Linkerd
 ---
 
-## Ingress Approach Demo
+ ## Tasks
 
- 1) Deploy the application "v1" (green version)
+ 1) Deploy the application "v1" (before blue/green deployment)
  2) Allow access to the application trough the ingress controller
- 3) Configure TrafficSplit to manage the routing to the application
+ 3) Configure TrafficSplit to manage the routing to the application (green version)
  4) Deploy a new version of the application "v2" (blue version)
  5) Allow access to the application trough the ingress controller
  6) Switch traffic to the new version
